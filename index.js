@@ -1,31 +1,12 @@
 //Definimos las distintas interfaces que usaremos
-
-interface Trainer {
-    name: string;
-    reputation: number;
-    availablePlaces: number;
-}
-
-interface Client {
-    name: string;
-    expectation: number;
-}
-
-interface Assignations {
-    client: string;
-    trainer: string;
-    fitDifference: number;
-}
-
 // Asignamos los valores a las interfaces
-const trainers: Trainer[] = [
+var trainers = [
     { name: 'A', reputation: 4.5, availablePlaces: 1 },
     { name: 'B', reputation: 3.2, availablePlaces: 4 },
     { name: 'C', reputation: 1.2, availablePlaces: 3 },
     { name: 'D', reputation: 3.4, availablePlaces: 2 },
 ];
-
-const clients: Client[] = [
+var clients = [
     { name: 'q', expectation: 2.6 },
     { name: 'r', expectation: 3.7 },
     { name: 's', expectation: 8.5 },
@@ -36,32 +17,27 @@ const clients: Client[] = [
     { name: 'x', expectation: 3.7 },
     { name: 'y', expectation: 8.1 },
     { name: 'z', expectation: 2.5 },
-]
-
+];
 // Calculamos las expectativas del cliente con respecto a la reputación del entrenador
-
-function calculateAssignament(client: Client, trainer: Trainer): number {
+function calculateAssignament(client, trainer) {
     return trainer.reputation - (client.expectation / 2);
 }
-
 // Asignamos a la interface de Assignations cada cliente con su entrenador
-function assignClient(trainers: Trainer[], clients: Client[]): Assignations[]{
+function assignClient(trainers, clients) {
     // ordenamos descendentemente, de mayor a menor reputación
-    trainers.sort((a, b) => b.reputation - a.reputation);
-    clients.sort((a, b) => b.expectation - a.expectation);
-
-    const assignations: Assignations[] = [];
-
-    for(const client of clients){
-        let bestTrainer: Trainer | null = null;
+    trainers.sort(function (a, b) { return b.reputation - a.reputation; });
+    clients.sort(function (a, b) { return b.expectation - a.expectation; });
+    var assignations = [];
+    for (var _i = 0, clients_1 = clients; _i < clients_1.length; _i++) {
+        var client = clients_1[_i];
+        var bestTrainer = null;
         // Comenzamos con un ajuste negativo para asegurarnos de que el primer resultado va a ser mayor
-        let bestDifference = -1;
-        for(const trainer of trainers){
-            if(trainer.availablePlaces > 0){
-                // Calculamos la diferencia que hay entre las expectativas y la reputación
-                let fitDifference = calculateAssignament(client, trainer);
-                // si la nueva diferencia es mayor que la mejor que hemos tenido, entonces reasignamos el valor de bestDifference y así nos aseguramos de asignar de menor diferencia a mayor
-                if(fitDifference > bestDifference){
+        var bestDifference = -1;
+        for (var _a = 0, trainers_1 = trainers; _a < trainers_1.length; _a++) {
+            var trainer = trainers_1[_a];
+            if (trainer.availablePlaces > 0) {
+                var fitDifference = calculateAssignament(client, trainer);
+                if (fitDifference > bestDifference) {
                     bestDifference = fitDifference;
                     bestTrainer = trainer;
                 }
@@ -71,10 +47,9 @@ function assignClient(trainers: Trainer[], clients: Client[]): Assignations[]{
             client: client.name,
             trainer: bestTrainer.name,
             fitDifference: bestDifference,
-        })
+        });
     }
     return assignations;
 }
-
-const result = assignClient(trainers, clients);
+var result = assignClient(trainers, clients);
 console.log(result);
