@@ -22,9 +22,13 @@ export function assignClient(trainers: Trainer[], clients: Client[]): Assignatio
             if (trainer.availablePlaces > 0) {
                 // Calculamos la diferencia que hay entre las expectativas y la reputación
                 let fitDifference = calculateAssignament(client, trainer);
+
+                // Redondeamos a dos decimales
+                let fitDifferenceRounded = Math.round(fitDifference * 100) / 100;
+
                 // si la nueva diferencia es mayor que la mejor que hemos tenido, entonces reasignamos el valor de bestDifference y así nos aseguramos de asignar de menor diferencia a mayor
-                if (fitDifference > bestDifference) {
-                    bestDifference = fitDifference;
+                if (fitDifferenceRounded > bestDifference) {
+                    bestDifference = fitDifferenceRounded;
                     bestTrainer = trainer;
                 }
             }

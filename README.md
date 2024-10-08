@@ -47,6 +47,8 @@ El proyecto utiliza TypeScript para manejar toda la lógica. He decidido <br> es
 **node index.js**
 4. Observar el resultado en la consola.
 
+### Resultado:
+![Resultado](./public/img/result.png)
 ## Tecnologías:
 El proyecto se desarrolló con las siguientes tecnologías:
 - TypeScript
