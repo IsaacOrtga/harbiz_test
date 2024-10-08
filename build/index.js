@@ -1,4 +1,6 @@
-import { assignClient } from './assignments';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const assignments_1 = require("./assignments");
 // Asignamos los valores a las interfaces
 const trainers = [
     { name: 'A', reputation: 4.5, availablePlaces: 1 },
@@ -18,5 +20,5 @@ const clients = [
     { name: 'y', expectation: 8.1 },
     { name: 'z', expectation: 2.5 },
 ];
-const assignments = assignClient(trainers, clients);
+const assignments = (0, assignments_1.assignClient)(trainers, clients);
 console.log(assignments);

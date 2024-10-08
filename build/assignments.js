@@ -1,9 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.calculateAssignament = calculateAssignament;
+exports.assignClient = assignClient;
 // Calculamos las expectativas del cliente con respecto a la reputación del entrenador
 function calculateAssignament(client, trainer) {
     return trainer.reputation - (client.expectation / 2);
 }
 // Asignamos a la interface de Assignations cada cliente con su entrenador
-export function assignClient(trainers, clients) {
+function assignClient(trainers, clients) {
     // ordenamos descendentemente, de mayor a menor reputación
     trainers.sort((a, b) => b.reputation - a.reputation);
     clients.sort((a, b) => b.expectation - a.expectation);
@@ -31,6 +35,7 @@ export function assignClient(trainers, clients) {
                 trainer: bestTrainer.name,
                 fitDifference: bestDifference,
             });
+            bestTrainer.availablePlaces--;
         }
         else {
             console.error('Trainer is not available for ' + client.name);
