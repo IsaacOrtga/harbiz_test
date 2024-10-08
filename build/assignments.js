@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.calculateAssignament = calculateAssignament;
 exports.assignClient = assignClient;
-// Calculamos las expectativas del cliente con respecto a la reputación del entrenador
+// Calculamos las expectativas del cliente con respecto a la reputación del entrenador para sacar la diferencia y tomar dicha diferencia como referencia de cuánto de cerca están sus expectativas o exigencias de la reputación del entrenador
 function calculateAssignament(client, trainer) {
     return trainer.reputation - (client.expectation / 2);
 }
@@ -13,7 +13,7 @@ function assignClient(trainers, clients) {
     clients.sort((a, b) => b.expectation - a.expectation);
     const assignations = [];
     for (const client of clients) {
-        // Asinamos un valor inicial de null a bestTrainer, ya que al principio no lo tenemos
+        // Asignamos un valor inicial de null a bestTrainer, ya que al principio no lo tenemos
         let bestTrainer = null;
         // Comenzamos con un ajuste negativo para asegurarnos de que el primer resultado va a ser mayor
         let bestDifference = -1;
@@ -38,7 +38,7 @@ function assignClient(trainers, clients) {
             bestTrainer.availablePlaces--;
         }
         else {
-            console.error('Trainer is not available for ' + client.name);
+            console.error('No hay entrenadores disponibles para el cliente ' + client.name);
         }
     }
     return assignations;
