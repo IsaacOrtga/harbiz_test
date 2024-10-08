@@ -41,11 +41,13 @@ El proyecto utiliza TypeScript para manejar toda la lógica. He decidido <br> es
 ## Uso:
 1. Si no se ha compilado el proyecto, compilarlo:
 **tsc**
-2. Dirigirse a la carpeta build:
+2. Ejecutar test:
+**npm test**
+3. Dirigirse a la carpeta build:
 **cd build**
-3. Ejecutar node:
+4. Ejecutar node:
 **node index.js**
-4. Observar el resultado en la consola.
+5. Observar el resultado en la consola.
 
 ### Resultado:
 ![Resultado](./public/img/result.png)
